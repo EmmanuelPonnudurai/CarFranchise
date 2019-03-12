@@ -11,3 +11,9 @@
 - `click them butttons`
 
 ![Alt Text](http://g.recordit.co/JK7ulNqc1b.gif)
+
+| References
+- [facebook likes typescript too](https://facebook.github.io/create-react-app/docs/adding-typescript)
+- [Redux](https://redux.js.org/)
+- [React-Redux](https://react-redux.js.org/)
+- [Typescript](https://www.typescriptlang.org/index.html)
