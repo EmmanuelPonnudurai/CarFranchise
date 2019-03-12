@@ -1,0 +1,38 @@
+.franchise{
+  border-style: dotted;
+  margin: 10px;
+  padding: 10px;
+}
+
+.tiny-input{
+  width: 50px;
+}
+
+.space-well{
+  display:block;
+  margin: 10px;
+}
+
+.blueviolet{
+  border-color: blueviolet
+}
+
+.blue{
+    border-color: blue;    
+}
+
+.green{
+    border-color: chartreuse;
+}
+
+.coral{
+  border-color: coral;
+}
+
+.flex-grid {
+    display: flex;
+  }
+
+.col {
+    flex: 1;
+  }
