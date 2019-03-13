@@ -1,11 +1,11 @@
 import * as React from 'react';
 import '../styles.css';
-import { Car, CarType } from '../models';
+import { CarType, CarRequest } from '../models';
 
 export interface CarFranshiseProps {
     franchiseName: string;
-    cars: Car[];
-    onCarSold: (car: Car) => void;
+    inventory: Map<CarType, number>;
+    onCarSold: (carRequest: CarRequest) => void;
 }
 
 interface CarFranchiseState {
@@ -30,11 +30,11 @@ export class CarFranchise extends React.Component<CarFranshiseProps, CarFranchis
     };
 
     private onClickHandler = () => {
-        const car: Car = {
-            make: 'Super Car',
-            type: this.state.carType
+        const carRequest: CarRequest = {
+            type: this.state.carType,
+            count: 1
         };
-        this.props.onCarSold(car);
+        this.props.onCarSold(carRequest);
     };
 
     private getClassName = () => {
@@ -54,14 +54,18 @@ export class CarFranchise extends React.Component<CarFranshiseProps, CarFranchis
     };
 
     render() {
+        let totalCarCount = 0;
+        this.props.inventory.forEach((x, y) => totalCarCount = totalCarCount + x);
+        const carTypes = Array.from(this.props.inventory.keys());
+
         return (
             <div className={this.getClassName()}>
                 <label className="space-well">{this.props.franchiseName + ' frachise'}</label>
-                <label className="space-well">Total Cars in godown: {this.props.cars.length}</label>
+                <label className="space-well">Total Cars in godown: {totalCarCount}</label>
                 <div className="space-well">
                     <label>Car Type </label>
                     <select value={this.state.carType} onChange={this.handleChange}>
-                        {Array.from(new Set(this.props.cars.map(m => m.type))).map(type => {
+                        {carTypes.map(type => {
                             return (<option key={type} value={type}>{CarType[type]}</option>);
                         })}
                     </select>

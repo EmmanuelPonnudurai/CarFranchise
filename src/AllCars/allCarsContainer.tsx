@@ -1,13 +1,15 @@
 import { connect } from "react-redux";
-import { RootState, Car } from "../models";
+import { RootState, CarType } from "../models";
 import { AllCars } from "./allCars";
 
 interface PropsFromStore {
-    cars: Car[]
+    inventory: Map<CarType, number>
 }
 
 const mapStateToProps = (appState: RootState): PropsFromStore => {
-    return { cars: appState.cars };
+    return {
+        inventory: appState.inventory
+    };
 }
 
 const ConnectedAllCars = connect<PropsFromStore, {}, {}, RootState>(mapStateToProps)(AllCars);

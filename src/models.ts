@@ -1,5 +1,5 @@
 export interface RootState {
-    cars: Car[]
+    inventory: Map<CarType, number>
 }
 
 export interface Car {
@@ -16,4 +16,9 @@ export enum CarType {
 export interface Franchise {
     id: number;
     location: string;
+}
+
+export interface CarRequest {
+    type: CarType;
+    count: number
 }

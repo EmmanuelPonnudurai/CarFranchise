@@ -1,26 +1,26 @@
-import { Car, RootState } from "../models";
+import { RootState, CarType, CarRequest } from "../models";
 import { Dispatch } from "redux";
 import { RemoveCarDataAction, removeCarData } from "../store/actions";
 import { connect } from "react-redux";
 import { CarFranchise } from "./CarFranshise";
 
 interface DispatchFromProps {
-    onCarSold: (car: Car) => void;
+    onCarSold: (carRequest: CarRequest) => void;
 }
 
 interface PropsFromStore {
-    cars: Car[];
+    inventory: Map<CarType, number>;
 }
 
 const mapStateToProps = (appState: RootState): PropsFromStore => {
     return {
-        cars: appState.cars
+        inventory: appState.inventory
     };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch<RemoveCarDataAction>): DispatchFromProps => {
     const dispatcher: DispatchFromProps = {
-        onCarSold: (car: Car) => dispatch(removeCarData(car))
+        onCarSold: (carRequest: CarRequest) => dispatch(removeCarData(carRequest))
     };
     return dispatcher;
 }

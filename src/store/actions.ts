@@ -1,4 +1,4 @@
-import { Car } from "../models";
+import { Car, CarRequest } from "../models";
 
 export const ADD_CAR_DATA = 'ADD_CAR_DATA';
 export const REMOVE_CAR_DATA = 'REMOVE_CAR_DATA';
@@ -15,18 +15,16 @@ export const addCarData = (car: Car): AddCarDataAction => {
         payload: car
     };
 };
-//
 
-// Update
 export interface RemoveCarDataAction {
     type: typeof REMOVE_CAR_DATA;
-    payload: Car
+    payload: CarRequest
 }
 
-export const removeCarData = (car: Car): RemoveCarDataAction => {
+export const removeCarData = (payload: CarRequest): RemoveCarDataAction => {
     return {
         type: REMOVE_CAR_DATA,
-        payload: car
+        payload: payload
     };
 };
 //

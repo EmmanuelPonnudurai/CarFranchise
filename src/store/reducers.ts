@@ -1,17 +1,12 @@
 import { RootStateActionTypes } from './actions';
-import { RootState, Car, CarType } from '../models';
+import { RootState, CarType } from '../models';
 
 const initState: RootState = {
-    cars: [
-        { make: 'Super Car', type: CarType.Mars },
-        { make: 'Super Car', type: CarType.Mars },
-        { make: 'Super Car', type: CarType.Mercury },
-        { make: 'Super Car', type: CarType.Mercury },
-        { make: 'Super Car', type: CarType.Saturn },
-        { make: 'Super Car', type: CarType.Saturn },
-        { make: 'Super Car', type: CarType.Saturn },
-        { make: 'Super Car', type: CarType.Saturn }
-    ]
+    inventory: new Map<CarType, number>([
+        [CarType.Mars, 3],
+        [CarType.Mercury, 5],
+        [CarType.Saturn, 2]
+    ])
 };
 
 export const rootReducer = (state = initState,
@@ -19,22 +14,24 @@ export const rootReducer = (state = initState,
     switch (action.type) {
         case "ADD_CAR_DATA":
             return state;
+
         case "REMOVE_CAR_DATA":
-            const currentCars = state.cars ? state.cars : [];
-            const updatedCars: Car[] = [];
-            let found = false;
-            for (const car of currentCars) {
-                if (!found && (car.type === action.payload.type)) {
-                    found = true;
+            const updated = new Map<CarType, number>();
+            state.inventory.forEach((x, y) => {
+                if (action.payload.type === y && x !== 0) {
+                    const count = x - 1;
+                    if (count !== 0) {
+                        updated.set(y, count);
+                    }
                 }
                 else {
-                    updatedCars.push(car);
+                    updated.set(y, x)
                 }
-            }
+            });
             return {
-                ...state,
-                cars: updatedCars
+                inventory: updated
             };
+
         default:
             return state;
     }

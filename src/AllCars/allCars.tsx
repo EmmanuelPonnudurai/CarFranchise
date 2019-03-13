@@ -1,28 +1,21 @@
 import * as React from 'react';
-import { Car, CarType } from '../models';
+import { CarType } from '../models';
 
 export interface AllCarsProps {
-    cars: Car[]
+    inventory: Map<CarType, number>
 }
 
 export const AllCars = (props: AllCarsProps): JSX.Element => {
-    const carMap = new Map<string, number>();
-    for (const type in CarType) {
-        const i = parseInt(type, 10);
-        if (!isNaN(i)) {
-            carMap.set(CarType[i], ((props.cars.filter(x => x.type === i) || []).length));
-        }
-    }
-
     const rows = () => {
         const items: JSX.Element[] = [];
-        carMap.forEach((value, key) => {
+        props.inventory.forEach((value, key) => {
             items.push(
                 <tr key={key}>
-                    <td>{key}</td>
+                    <td>{CarType[key]}</td>
                     <td>{value}</td>
                 </tr>);
         });
+
         return items;
     };
 
