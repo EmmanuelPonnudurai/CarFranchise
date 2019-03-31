@@ -8,10 +8,10 @@ export default class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <div className="app-1">
-          <p>Super Cars Store and Franchises</p>
+        <div className="app">
+          <p>Super Cars</p>
           <div className="flex-grid">
-            <div className="col1"><ConnectedAllCars /></div>
+            <div className="col"><ConnectedAllCars /></div>
           </div>
           <div className="flex-grid">
             <div className="col"><ConnectedCarFranchise franchiseName="Chicago" /></div>

@@ -71,7 +71,7 @@ export class CarFranchise extends React.Component<CarFranshiseProps, CarFranchis
                     </select>
                 </div>
                 <div>
-                    <input type='button' value='Order' onClick={this.onClickHandler} />
+                    <input type='button' value='Sell' onClick={this.onClickHandler} />
                 </div>
                 <br />
             </div>

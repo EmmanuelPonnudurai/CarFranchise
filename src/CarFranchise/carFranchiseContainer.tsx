@@ -2,7 +2,7 @@ import { RootState, CarType, CarRequest } from "../models";
 import { Dispatch } from "redux";
 import { RemoveCarDataAction, removeCarData } from "../store/actions";
 import { connect } from "react-redux";
-import { CarFranchise } from "./CarFranshise";
+import { CarFranchise, CarFranshiseProps } from "./CarFranshise";
 
 interface DispatchFromProps {
     onCarSold: (carRequest: CarRequest) => void;
@@ -14,7 +14,7 @@ interface PropsFromStore {
 
 const mapStateToProps = (appState: RootState): PropsFromStore => {
     return {
-        inventory: appState.inventory
+        inventory: appState.inventory,
     };
 };
 

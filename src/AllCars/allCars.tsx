@@ -21,7 +21,7 @@ export const AllCars = (props: AllCarsProps): JSX.Element => {
 
     return (
         <div className="franchise blueviolet">
-            <p>The main Godown</p>
+            <p>Main plant</p>
             <table>
                 <thead>
                     <tr>
