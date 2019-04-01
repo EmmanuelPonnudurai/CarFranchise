@@ -2,7 +2,7 @@ import { RootState, CarType, CarRequest } from "../models";
 import { Dispatch } from "redux";
 import { RemoveCarDataAction, removeCarData } from "../store/actions";
 import { connect } from "react-redux";
-import { CarFranchise, CarFranshiseProps } from "./CarFranshise";
+import { CarFranchise } from "./carFranchise";
 
 interface DispatchFromProps {
     onCarSold: (carRequest: CarRequest) => void;

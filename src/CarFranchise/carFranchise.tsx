@@ -19,15 +19,11 @@ export class CarFranchise extends React.Component<CarFranshiseProps, CarFranchis
     }
 
     private handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        const t = parseInt(event.target.value, 10) as CarType;
+        const carType = parseInt(event.target.value, 10) as CarType;
         this.setState({
-            carType: t as CarType
+            carType: carType
         });
-    };
-
-    private onTextChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const v = event.target.value;
-    };
+    }
 
     private onClickHandler = () => {
         const carRequest: CarRequest = {
@@ -61,7 +57,7 @@ export class CarFranchise extends React.Component<CarFranshiseProps, CarFranchis
         return (
             <div className={this.getClassName()}>
                 <label className="space-well">{this.props.franchiseName + ' frachise'}</label>
-                <label className="space-well">Total Cars in godown: {totalCarCount}</label>
+                <label className="space-well">Total Cars in plant: {totalCarCount}</label>
                 <div className="space-well">
                     <label>Car Type </label>
                     <select value={this.state.carType} onChange={this.handleChange}>

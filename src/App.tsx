@@ -7,19 +7,17 @@ import ConnectedAllCars from './AllCars/allCarsContainer';
 export default class App extends Component {
   render() {
     return (
-      <React.Fragment>
-        <div className="app">
-          <p>Super Cars</p>
-          <div className="flex-grid">
-            <div className="col"><ConnectedAllCars /></div>
-          </div>
-          <div className="flex-grid">
-            <div className="col"><ConnectedCarFranchise franchiseName="Chicago" /></div>
-            <div className="col"><ConnectedCarFranchise franchiseName="New Jersey" /></div>
-            <div className="col"><ConnectedCarFranchise franchiseName="New York" /></div>
-          </div>
+      <div className="app">
+        <p>Super Cars</p>
+        <div className="flex-grid">
+          <div className="col"><ConnectedAllCars /></div>
         </div>
-      </React.Fragment>
+        <div className="flex-grid">
+          <div className="col"><ConnectedCarFranchise franchiseName="Chicago" /></div>
+          <div className="col"><ConnectedCarFranchise franchiseName="New Jersey" /></div>
+          <div className="col"><ConnectedCarFranchise franchiseName="New York" /></div>
+        </div>
+      </div>
     );
   }
 }

@@ -1,7 +1,7 @@
 import { RootStateActionTypes } from './actions';
 import { RootState, CarType } from '../models';
 
-const initState: RootState = {
+export const initState: RootState = {
     inventory: new Map<CarType, number>([
         [CarType.Mars, 3],
         [CarType.Mercury, 5],

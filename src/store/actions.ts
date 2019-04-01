@@ -3,7 +3,6 @@ import { Car, CarRequest } from "../models";
 export const ADD_CAR_DATA = 'ADD_CAR_DATA';
 export const REMOVE_CAR_DATA = 'REMOVE_CAR_DATA';
 
-// Add
 export interface AddCarDataAction {
     type: typeof ADD_CAR_DATA,
     payload: Car
@@ -27,6 +26,5 @@ export const removeCarData = (payload: CarRequest): RemoveCarDataAction => {
         payload: payload
     };
 };
-//
 
 export type RootStateActionTypes = AddCarDataAction | RemoveCarDataAction;
