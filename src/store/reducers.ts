@@ -1,7 +1,7 @@
 import { RootStateActionTypes } from './actions';
 import { RootState, CarType } from '../models';
 
-export const initState: RootState = {
+export const initialRootState: RootState = {
     inventory: new Map<CarType, number>([
         [CarType.Mars, 3],
         [CarType.Mercury, 5],
@@ -9,10 +9,11 @@ export const initState: RootState = {
     ])
 };
 
-export const rootReducer = (state = initState,
+export const rootReducer = (state = initialRootState,
     action: RootStateActionTypes): RootState => {
     switch (action.type) {
         case "ADD_CAR_DATA":
+            // TODO: handle addion of a CarType
             return state;
 
         case "REMOVE_CAR_DATA":

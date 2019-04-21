@@ -9,25 +9,49 @@ export interface CarFranshiseProps {
 }
 
 interface CarFranchiseState {
-    carType: CarType;
+    allTypes: CarType[];
+    selectedType: CarType;
 }
 
 export class CarFranchise extends React.Component<CarFranshiseProps, CarFranchiseState>{
     constructor(props: CarFranshiseProps) {
         super(props);
-        this.state = { carType: CarType.Mars };
+        this.state = {
+            selectedType: CarType.Mars,
+            allTypes: Array.from(this.props.inventory.keys())
+        };
+    }
+
+    static getDerivedStateFromProps(nextProps: CarFranshiseProps,
+        prevState: CarFranchiseState): CarFranchiseState {
+        const types = Array.from(nextProps.inventory.keys());
+        if (prevState.allTypes.length === types.length) {
+            return prevState;
+        }
+
+        if (types.some(x => x === prevState.selectedType)) {
+            return {
+                selectedType: prevState.selectedType,
+                allTypes: types
+            };
+        }
+
+        return {
+            selectedType: types[0],
+            allTypes: types
+        };
     }
 
     private handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const carType = parseInt(event.target.value, 10) as CarType;
         this.setState({
-            carType: carType
+            selectedType: carType
         });
     }
 
     private onClickHandler = () => {
         const carRequest: CarRequest = {
-            type: this.state.carType,
+            type: this.state.selectedType,
             count: 1
         };
         this.props.onCarSold(carRequest);
@@ -52,24 +76,27 @@ export class CarFranchise extends React.Component<CarFranshiseProps, CarFranchis
     render() {
         let totalCarCount = 0;
         this.props.inventory.forEach((x, y) => totalCarCount = totalCarCount + x);
-        const carTypes = Array.from(this.props.inventory.keys());
 
         return (
             <div className={this.getClassName()}>
                 <label className="space-well">{this.props.franchiseName + ' frachise'}</label>
                 <label className="space-well">Total Cars in plant: {totalCarCount}</label>
-                <div className="space-well">
-                    <label>Car Type </label>
-                    <select value={this.state.carType} onChange={this.handleChange}>
-                        {carTypes.map(type => {
-                            return (<option key={type} value={type}>{CarType[type]}</option>);
-                        })}
-                    </select>
-                </div>
-                <div>
-                    <input type='button' value='Sell' onClick={this.onClickHandler} />
-                </div>
-                <br />
+                {totalCarCount === 0 ?
+                    (<div> Sold out !! </div>) :
+                    (<>
+                        <div className="space-well">
+                            <label>Car Type </label>
+                            <select value={this.state.selectedType} onChange={this.handleChange}>
+                                {this.state.allTypes.map(type => {
+                                    return (<option key={type} value={type}>{CarType[type]}</option>);
+                                })}
+                            </select>
+                        </div>
+                        <div>
+                            <input type='button' value='Sell' onClick={this.onClickHandler} />
+                        </div>
+                    </>)
+                }
             </div>
         );
     }
